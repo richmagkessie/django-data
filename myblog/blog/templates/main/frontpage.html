@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% block title %} Frontpage | {% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <section class="section">
+        <div class="columns">
+          <div class="column is-8 is-offset-2">
+            <!-- loop ing through posts -->
+            {% for post in posts %}
+              <div class="content is-medium">
+                <a href="{% url 'post_detail' post.category.slug post.slug %}">
+                <h1 class="subtitle is-4">{{post.title}}</h1><small>{{post.created_at | timesince}} ago</small><br>
+                <h2 class="title">{{post.intro}}</h2>
+                <p>{{post.body}}</p>
+              </a>
+            </div>
+            <!-- endfor -->
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+{%endblock %}
